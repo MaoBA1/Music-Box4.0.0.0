@@ -1,14 +1,12 @@
-import React from 'react';
-import { TouchableOpacity, Platform, View, Text } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React from "react";
+import { TouchableOpacity, Platform, View, Text } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Entypo from 'react-native-vector-icons/Entypo';
 import Colors from '../Utitilities/AppColors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useSelector } from 'react-redux';
-
-
 
 //Authentication
 import LoginScreen, {screenOptions as LoginScreenOptions} from '../Authentication/LoginScreen';
@@ -17,11 +15,10 @@ import VerificationScreen, {screenOptions as verificationScreenOptions} from '..
 import ForgetPasswordScreen, {screenOptions as ForgetPasswordScreenOptions} from '../Authentication/ForgetPasswordScreen';
 import ResetPasswordScreen, {screenOptions as ResetPasswordScreenOptions} from '../Authentication/ResetPasswordScreen';
 
-
-//First Use
+// //First Use
 import FirstUseScreen, {screenOptions as FirstUseScreenOptions} from '../FirstUse';
 
-//OverView
+// OverView
 
     // DashBoard
 import DashBoardScreen, {screenOptions as DashBoardScreenOptions} from '../OverView/DashBoards/MainDashBoard/DashBoardScreen';
@@ -32,7 +29,6 @@ import PlayListScreen from '../OverView/DashBoards/DashboardUserProfiles/PlayLis
 import MusicBoardPlaylistScreen, {screenOptions as MusicBoardPlaylistScreenOptions} from '../OverView/DashBoards/DashBoardMusic/MusicBoardPlaylistScreen';
 import MenuScreen, {screenOptions as MenuScreenOptions} from '../OverView/Menu/MenuScreen';
 import CommentScreen, {screenOptions as CommentScreenOptions} from '../OverView/CommentScreen';
-
 
 import UserChatsScreen, { screenOptions as UserChatsScreenOptions} from '../OverView/DashBoards/Chat/UserChatsScreen';
 import CreateNewSingleChatScreen, { screenOptions as CreateNewSingleChatScreenOptions} from '../OverView/DashBoards/Chat/CreateNewSingleChatScreen';
@@ -48,22 +44,20 @@ import ArtistProfileScreen, {screenOptions as ArtistProfileScreenOptions} from '
 import ArtistFeedScreen, {screenOptions as ArtistFeedScreenOptions} from '../OverView/artist/ArtistFeedScreen';
 import ArtistMusicScreen, {screenOptions as ArtistMusicScreenOptions} from '../OverView/artist/ArtistMusicScreen';
 
-
 //comment
-
 
 // This is the stack that holds all the other stacks that contain the application's screens
 const RootStackNavigator = createStackNavigator();
 export const RootStack = () => {
-    return(
-        <RootStackNavigator.Navigator>
-            <RootStackNavigator.Screen name='auth' component={AuthStack} options={{headerShown: false}}/>
-            <RootStackNavigator.Screen name='firstUseStack' component={FirstUseStack} options={{headerShown: false}}/>
+  return (
+    <RootStackNavigator.Navigator>
+      <RootStackNavigator.Screen name='auth' component={AuthStack} options={{headerShown: false}}/>
+      <RootStackNavigator.Screen name='firstUseStack' component={FirstUseStack} options={{headerShown: false}}/>
             <RootStackNavigator.Screen name='OverView' component={OverViewStack} options={{headerShown: false, gestureEnabled:false}}/>            
             <RootStackNavigator.Screen name='Comment' component={CommentScreen} options={{headerShown: false}}/>
-        </RootStackNavigator.Navigator>
-    )
-}
+    </RootStackNavigator.Navigator>
+  );
+};
 
 const AuthStackNvigator = createStackNavigator();
 export const AuthStack = () => {
@@ -79,7 +73,7 @@ export const AuthStack = () => {
                     textShadowRadius:10},
                     headerTitleAlign:'center',
                     headerTintColor:'#fff',
-                    headerLeft: () => 
+                    headerLeft: () =>
                     <TouchableOpacity onPress={navigation.goBack}
                     style={{paddingBottom:5, paddingLeft:15, height:'100%', alignItems:'center', justifyContent:'center'}}
                     >
@@ -101,7 +95,6 @@ export const AuthStack = () => {
     )
 }
 
-
 const FirstUseStackNavigator = createStackNavigator();
 export const FirstUseStack = () => {
     return(
@@ -111,7 +104,6 @@ export const FirstUseStack = () => {
     )
 }
 
-
 const DashBoardTopStackNavigator = createMaterialTopTabNavigator();
 export const DashBoardTopBarStack = () => {
     return(
@@ -119,14 +111,14 @@ export const DashBoardTopBarStack = () => {
             <DashBoardTopStackNavigator.Group screenOptions={{
             tabBarLabelStyle: {
                 fontFamily: 'Baloo2-Bold',
-                fontSize:16,            
+                fontSize:16,
             },
             tabBarStyle:{
                 backgroundColor:Colors.grey1,
                 paddingTop:Platform.OS == 'ios' ? 30 : 10,
-                
+
             },
-            
+
             tabBarIndicatorStyle:{backgroundColor:Colors.red3},
             tabBarActiveTintColor:Colors.red3,
             tabBarInactiveTintColor:Colors.grey3,
@@ -148,14 +140,14 @@ export const ArtistProfileStack = () => {
             <ArtistProfileStackNavigator.Group screenOptions={{
                 tabBarLabelStyle: {
                     fontFamily: 'Baloo2-Bold',
-                    fontSize:16,            
+                    fontSize:16,
                 },
                 tabBarStyle:{
                     backgroundColor:Colors.grey1,
                     paddingTop:Platform.OS == 'ios' ? 30 : 10,
-                    
+
                 },
-                
+
                 tabBarIndicatorStyle:{backgroundColor:Colors.red3},
                 tabBarActiveTintColor:Colors.red3,
                 tabBarInactiveTintColor:Colors.grey3,
@@ -171,7 +163,6 @@ export const ArtistProfileStack = () => {
     )
 }
 
-
 const DashBoardContainerStackNavigator = createStackNavigator();
 export const DashBoardContainerStack = () => {
     return(
@@ -185,7 +176,7 @@ export const DashBoardContainerStack = () => {
             <DashBoardContainerStackNavigator.Screen name="CommentScreen" component={CommentScreen} options={CommentScreenOptions}/>
             <DashBoardContainerStackNavigator.Screen name="UserChatScreen" component={UserChatsScreen} options={UserChatsScreenOptions}/>
             <DashBoardContainerStackNavigator.Screen name="CreateNewSingleChatScreen" component={CreateNewSingleChatScreen} options={CreateNewSingleChatScreenOptions}/>
-            <DashBoardContainerStackNavigator.Screen name="SingleChatScreen" component={SingleChatScreen} options={SingleChatScreenOptions}/>
+            {/* <DashBoardContainerStackNavigator.Screen name="SingleChatScreen" component={SingleChatScreen} options={SingleChatScreenOptions}/> */}
         </DashBoardContainerStackNavigator.Navigator>
     )
 }
@@ -208,7 +199,6 @@ export const ProfileStack = () => {
     )
 }
 
-
 const LibraryStackNavigator = createStackNavigator();
 export const LibraryStack = () => {
     return(
@@ -219,7 +209,6 @@ export const LibraryStack = () => {
     )
 }
 
-
 const SearchStackNavigator = createStackNavigator();
 export const SearchStack = () => {
     return(
@@ -227,7 +216,7 @@ export const SearchStack = () => {
             <SearchStackNavigator.Screen name="SearchScreen" component={SearchScreen} options={{headerShown: false}}/>
             <SearchStackNavigator.Screen name='ArtistFeed' component={FeedScreen} options={FeedScreenOptions}/>
             <SearchStackNavigator.Screen name='ArtistMusicBoard' component={MusciScreen} options={MusciScreenOptions}/>
-            <SearchStackNavigator.Screen name="PlaylistScreen" component={PlayListScreen} options={{headerShown: false}}/> 
+            <SearchStackNavigator.Screen name="PlaylistScreen" component={PlayListScreen} options={{headerShown: false}}/>
             <SearchStackNavigator.Screen name="SingleChatScreen" component={SingleChatScreen} options={SingleChatScreenOptions}/>
         </SearchStackNavigator.Navigator>
     )
@@ -249,13 +238,12 @@ const MenuStack = () => {
     )
 }
 
-
 const OverViewBottomStackNavigator = createMaterialBottomTabNavigator();
 
 export const OverViewStack = () => {
     const appSelector = useSelector(state => state.AppReducer);
     const { main } = appSelector;
-    
+
     return(
         <OverViewBottomStackNavigator.Navigator initialRouteName='Home' barStyle={{backgroundColor:Colors.grey4}}>
             <OverViewBottomStackNavigator.Screen
@@ -269,38 +257,37 @@ export const OverViewStack = () => {
                         const iconColor = focused? Colors.red3 : '#ffffff'
                         const iconSzie = focused? 24 : 22
                         return(
-                        <Entypo 
+                        <Entypo
                             name={'home'}
                             color={iconColor}
                             size={iconSzie}
                         />
                         )
-            
-                    },                                     
-                }} 
+
+                    },
+                }}
                 name='Home'
                 component={DashBoardContainerStack}
             />
 
             <OverViewBottomStackNavigator.Screen
-                options = {LibraryScreenOptions} 
+                options = {LibraryScreenOptions}
                 name='Library'
                 component={LibraryStack}
             />
 
             <OverViewBottomStackNavigator.Screen
-                options = {SearchScreenOptions} 
+                options = {SearchScreenOptions}
                 name='Search'
                 component={SearchStack}
             />
 
             <OverViewBottomStackNavigator.Screen
-                options = {ProfileScreenOptions} 
+                options = {ProfileScreenOptions}
                 name='Profile'
                 component={ProfileStack}
-            />  
-                                   
+            />
+
     </OverViewBottomStackNavigator.Navigator>
     )
 }
-

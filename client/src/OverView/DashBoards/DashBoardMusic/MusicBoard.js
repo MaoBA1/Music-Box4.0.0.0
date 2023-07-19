@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     View,
     Text,
@@ -35,7 +35,6 @@ const MusicBoardScreen = props => {
     const songsSelector = useSelector(state => state.SongReducer);
     const artistSelector = useSelector(state => state.ArtistsReducer);
     const appBackGroundSelector = useSelector(state => state.AppReducer);
-    const user = userDataSelector?.UserReducer?.account;
     const userPlaylists = userDataSelector?.UserPlaylists?.Playlists;
     const songsByUserFavoriteGeners = songsSelector?.SongsByUserFavoriteGeners?.List; 
     const artistsByUserFavoriteGeners = artistSelector?.ArtistsByUserFavoritGeners;
@@ -45,9 +44,7 @@ const MusicBoardScreen = props => {
         SongOnBackGroundReducer,
         currentAudio,
         isPlaying,
-        playbackDuration,
         playbackObj,
-        playbackPosition,
         soundObj,
         isLoading,
         MusicOnForGroundReducer
@@ -57,9 +54,9 @@ const MusicBoardScreen = props => {
 
     useEffect(() => {
         function makeTopList(){
-            let playlist = userPlaylists?.sort((a,b) => ((a, b) => 0.5 - Math.random()));
+            let playlist = userPlaylists?.sort(() => (() => 0.5 - Math.random()));
             let songsByGeners = songsByUserFavoriteGeners?.map(x => x = x.songs);
-            songsByGeners = [].concat.apply([],songsByGeners).sort((a, b) => 0.5 - Math.random());
+            songsByGeners = [].concat.apply([],songsByGeners).sort(() => 0.5 - Math.random());
             let list = [];
             for(let i = 0; list.length < 3 && i < playlist?.length; i ++) {
                 list.push({
